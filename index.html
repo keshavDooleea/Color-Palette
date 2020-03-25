@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/icon.png" />
+    <title>Color Palette</title>
+    <link rel="stylesheet" href="/style_palette.css" />
+  </head>
+  <body>
+    <div id="head">
+      <a href="/HTML/projects.html" id="back">⇦</a>
+      <h1>Color Palette</h1>
+    </div>
+
+    <div id="container">
+      <div class="palette">
+        <div class="color">
+          <a onclick="changeImage(this, 0)" id="lock-img">
+            <img src="/unlock.png" id="unlock" />
+            <img src="/lock.png" id="lock" />
+          </a>
+        </div>
+        <input class="hex" type="text" readonly />
+      </div>
+
+      <div class="palette">
+        <div class="color">
+          <a onclick="changeImage(this, 1)" id="lock-img">
+            <img src="/unlock.png" id="unlock" />
+            <img src="/lock.png" id="lock" />
+          </a>
+        </div>
+        <input class="hex" type="text" readonly />
+      </div>
+
+      <div class="palette">
+        <div class="color">
+          <a onclick="changeImage(this, 2)" id="lock-img">
+            <img src="/unlock.png" id="unlock" />
+            <img src="/lock.png" id="lock" />
+          </a>
+        </div>
+        <input class="hex" type="text" readonly />
+      </div>
+
+      <div class="palette">
+        <div class="color">
+          <a onclick="changeImage(this, 3)" id="lock-img">
+            <img src="/unlock.png" id="unlock" />
+            <img src="/lock.png" id="lock" />
+          </a>
+        </div>
+        <input class="hex" type="text" readonly />
+      </div>
+    </div>
+
+    <div id="button_container">
+      <div>
+        <div>______</div>
+        <button>Generate</button>
+        <div>______</div>
+      </div>
+      <h3>Color copied to clipboard</h3>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/script.js"></script>
+  </body>
+</html>
