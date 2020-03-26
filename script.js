@@ -1,19 +1,19 @@
 const palette = document.querySelectorAll(".color"); // 4 color divs
-const button = document.querySelector("button");
+const button = document.querySelector("button"); // generate button
 const hex = document.querySelectorAll(".hex"); // input hex component
 const img = document.querySelectorAll("#lock-img"); // lock and unlock images
 const header = document.querySelector("h1"); // color palette header
 const lines = document.querySelectorAll("#button_container div"); // two lines surrounding button
 const copied = document.querySelector("#button_container h3"); // message shown
 const back = document.querySelector("#back"); // back arrow to return to projects
-let islocked = Array(false, false, false, false); // for images
+let islocked = Array(false, false, false, false); // state of images
 
-// purple, blue, green, pink
-let bkgColor = Array("#7c677f", "#08627f", "#2a694d", "#b86b77", "#855D64");
-let elementColor = Array("#a795a8", "#afbeb9", "#7ca786", "#c9afc5", "#FFE5C5");
+// array ->            purple,     blue,     green,     pink,     red pink
+let bkgColor = Array("#7c677f", "#08627f", "#2a694d", "#b86b77", "#855D64"); // for background
+let elementColor = Array("#a795a8", "#afbeb9", "#7ca786", "#c9afc5", "#FFE5C5"); // for text
 let iterator = 1; // to iterate both arrays
 
-// generates random 2 bytes number from 0-255
+// generates random 2 digit number from 0-255
 function findColor() {
   return Math.floor(Math.random() * 256);
 }
@@ -30,27 +30,22 @@ function findHex(value) {
     first++;
   }
 
-  // second byte
+  // second digit
   second = value - first * 16;
-
-  // 1 multiplication in excess
-  if (first > 15 || first < 0) {
-    first = 0;
-  }
-  if (second > 15) {
-    second = 0;
-  }
 
   // convert to hexa decimal
   first = verifyDigit(first);
   second = verifyDigit(second);
 
+  // return hex code of two digit
   return first + "" + second;
 }
 
 // verify value range from 0 - 15
 function verifyDigit(value) {
-  if (value < 10) {
+  if (value <= 0) {
+    return 0;
+  } else if (value < 10) {
     return value;
   } else if (value == 10) {
     return "A";
@@ -64,6 +59,8 @@ function verifyDigit(value) {
     return "E";
   } else if (value == 15) {
     return "F";
+  } else {
+    return 0;
   }
 }
 
@@ -74,7 +71,7 @@ function assignColor(palette, hex) {
 
   palette.style.backgroundColor = `rgb(${firstPair}, ${secPair}, ${thirdPair})`;
 
-  // adds 6 numbers together to form hex code
+  // adds 6 number digits together to form hex code
   let hexCode;
   hexCode = "#";
   hexCode += findHex(firstPair);
@@ -88,7 +85,7 @@ for (let i = 0; i < palette.length; i++) {
   assignColor(palette[i], hex[i]);
 }
 
-// // copy to clipboard
+// copy to clipboard
 for (let i = 0; i < hex.length; i++) {
   hex[i].addEventListener("click", () => {
     // copy the hex value to clipboard
@@ -108,7 +105,7 @@ for (let i = 0; i < hex.length; i++) {
   });
 }
 
-// change lock images
+// toggle lock images
 function changeImage(obj, position) {
   obj.classList.toggle("lock");
   if (islocked[position]) {
@@ -118,14 +115,15 @@ function changeImage(obj, position) {
   }
 }
 
-button.onclick = () => {
+// button event listener
+button.addEventListener("click", () => {
   // reset background color to palettes
   for (let i = 0; i < palette.length; i++) {
     if (!islocked[i]) {
       assignColor(palette[i], hex[i]);
     }
   }
-};
+});
 
 // executes each 5 seconds
 setInterval(function() {
@@ -158,11 +156,11 @@ setInterval(function() {
     hex[i].style.borderTop = "none";
 
     // transitions
-    hex[i].style.transition = "0.9s";
+    hex[i].style.transition = "0.8s";
     palette[i].style.transition = "0.5s";
   }
 
-  // button horizontal lines
+  // button ::before and ::after horizontal lines
   for (let i = 0; i < lines.length; i++) {
     lines[i].style.color = elementColor[iterator];
     lines[i].style.transition = "0.5s";

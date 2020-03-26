@@ -131,14 +131,6 @@ h1::after {
 
 .hex:hover {
   font-size: 30px;
-  transition: 0.5s;
-}
-
-#button_container div div {
-  display: inline-block;
-  transform: translateY(-50%);
-  margin-right: 5px;
-  margin-left: 5px;
 }
 
 #button_container h3 {
@@ -162,6 +154,16 @@ h1::after {
   margin-top: 60px;
 }
 
+button::before {
+  content: "____";
+  width: 40px;
+  letter-spacing: -2px;
+  position: absolute;
+  left: 0;
+  transform: translate(-44px, -25%);
+  font-weight: 900;
+}
+
 button {
   width: 120px;
   height: 50px;
@@ -175,6 +177,17 @@ button {
   border-radius: 5%;
   font-family: "Poppins", sans-serif;
   cursor: pointer;
+  position: relative;
+}
+
+button::after {
+  content: "____";
+  width: 40px;
+  letter-spacing: -2px;
+  position: absolute;
+  right: 0;
+  font-weight: 900;
+  transform: translate(40px, -25%);
 }
 
 @font-face {
